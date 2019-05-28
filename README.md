@@ -12,22 +12,28 @@ This workflow assumes that your sequencing data meets certain criteria:
 
 
 ### Filter and trim
-```
+```R
 filterAndTrim(fnFs, filtFs, fnRs, filtRs, truncLen=c(270,240),maxEE=c(10,10), maxN=0, rm.phix=TRUE, compress=TRUE, multithread=TRUE)
 ```
   
 
 ### Merge paired reads
-```
+```R
 mergers <- mergePairs(dadaFs, derepFs, dadaRs, derepRs, verbose=TRUE, maxMismatch = 15)
 ```
 
 ### Track reads through the pipeline
+  track_Sample1
+  ("input", "filtered", "denoisedF", "denoisedR", "merged")
 
-### Remove chimeras
 
 ### Assign taxonomy
-
+```R
+taxa <- assignTaxonomy(seqtab.nochim, paste(getwd(),"silva_nr_v132_train_set.fa.gz" ,sep="/"), multithread=TRUE, tryRC=TRUE)
+```
+```R
+taxa <- addSpecies(taxa, paste(getwd(),"silva_species_assignment_v132.fa.gz", sep="/"), tryRC=TRUE)
+```
 ## Dependecies
 DADA-2
 
