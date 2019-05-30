@@ -16,10 +16,6 @@ for (temporada in directory_list) {
   # Extract sample names
   sample.names <- sapply(strsplit(basename(fnFs), "\\."), `[`, 1)
   
-  # Plot Quality
-  plotQualityProfile(fnFs[1:3])
-  plotQualityProfile(fnRs[1:3])
-  
   # Filter and trim
   # Place filtered files in filtered/ subdirectory
   filtFs <- file.path(path, "filtered", paste0(sample.names, "_F_filt.fastq.gz"))
