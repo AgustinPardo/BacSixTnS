@@ -1,6 +1,6 @@
 # Bacterial(Bac)16S(SixTNS)
 Pipeline develop in R to work with bacterial 16S ribosomal RNA gene amplicons from Next-generation Sequencing.
-The pipeline starts from Illumina-sequenced paired-end fastq files that have been split (or “demultiplexed”) by sample and from which the barcodes/adapters have already been removed. The end product is an amplicon sequence variant (ASV) table, a higher-resolution analogue of the traditional OTU table, .rds format (RData format). 
+The pipeline starts from Illumina-sequenced paired-end fastq files that have been split (or “demultiplexed”) by sample and from which the barcodes/adapters have already been removed. The end product is an amplicon sequence variant (ASV) table, a higher-resolution analogue of the traditional OTU table, in ".rds" format (RData format). 
 
 ## Data requirements
 
@@ -9,6 +9,10 @@ This workflow assumes that your sequencing data meets certain criteria:
 * Samples have been demultiplexed.
 * Non-biological nucleotides have been removed, e.g. primers, adapters, linkers, etc.
 * If paired-end sequencing data, the forward and reverse fastq files contain reads in matched order.
+
+## Dependecies
+* R
+* DADA-2 library
 
 ## Starting point
 
@@ -59,12 +63,7 @@ taxa <- addSpecies(taxa, paste(getwd(),"silva_species_assignment_v132.fa.gz", se
 * [silva_species_assignment_v132.fa.gz](https://zenodo.org/record/1172783/files/silva_species_assignment_v132.fa.gz?download=1)
 
 
-
 Considerations : If your reads do not seem to be appropriately assigned, for example lots of your bacterial 16S sequences are being assigned as Eukaryota NA NA NA NA NA, your reads may be in the opposite orientation as the reference database. Tell dada2 to try the reverse-complement orientation with assignTaxonomy(..., tryRC=TRUE) and see if this fixes the assignments.
 
 ### Result
 At the end of the pipeline you will get two files. "seqtab_nochim.rds", is the OTU table with the representative sequence and it's counts per sample. "tax_final.rds" is the same table but insted of the represtnaive sequence you have the taxonomic asigantion.
-
-## Dependecies
-DADA-2
-
