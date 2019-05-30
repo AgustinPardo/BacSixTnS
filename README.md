@@ -38,7 +38,7 @@ mergers <- mergePairs(dadaFs, derepFs, dadaRs, derepRs, verbose=TRUE, maxMismatc
 Considerations: Most of your reads should successfully merge. If a majority of reads failed to merge, you may need to revisit the truncLen parameter used in the filtering step and make sure that the truncated reads span your amplicon. 
 
 ## Track reads through the pipeline
-  The lost of reads of each step of the pipeline ("input", "filtered", "denoisedF", "denoisedR", "merged") is tracked in a file for each sample(track_sample)
+The lost of reads of each step of the pipeline ("input", "filtered", "denoisedF", "denoisedR", "merged") is tracked in a file for each sample(track_sample)
 
 ## Remove chimeras
 ```R
@@ -52,11 +52,19 @@ taxa <- assignTaxonomy(seqtab.nochim, paste(getwd(),"silva_nr_v132_train_set.fa.
 ```R
 taxa <- addSpecies(taxa, paste(getwd(),"silva_species_assignment_v132.fa.gz", sep="/"), tryRC=TRUE)
 ```
-## Dependecies
-DADA-2
 
-## SILVA Data Sets
+#### SILVA Data Sets
 * [silva_nr_v132_train_set.fa.gz](https://zenodo.org/record/1172783/files/silva_nr_v132_train_set.fa.gz?download=1)
 
 * [silva_species_assignment_v132.fa.gz](https://zenodo.org/record/1172783/files/silva_species_assignment_v132.fa.gz?download=1)
+
+
+
+Considerations : If your reads do not seem to be appropriately assigned, for example lots of your bacterial 16S sequences are being assigned as Eukaryota NA NA NA NA NA, your reads may be in the opposite orientation as the reference database. Tell dada2 to try the reverse-complement orientation with assignTaxonomy(..., tryRC=TRUE) and see if this fixes the assignments.
+
+### Result
+At the end of the pipeline you will get two files. "seqtab_nochim.rds", is the OTU table with the representative sequence and it's counts per sample. "tax_final.rds" is the same table but insted of the represtnaive sequence you have the taxonomic asigantion.
+
+## Dependecies
+DADA-2
 
