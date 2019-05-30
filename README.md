@@ -22,7 +22,7 @@ setwd("C:/Users/apardo/Documents/metagenomica/scripts-github")
 ```
 #### Set the samples forlders. Each folder contain demultiplexed files of the sample.
 ```R
-directory_list=c("Invierno2017","Primavera2014")
+directory_list=c("Sample1","Sample2","Sample3"...)
 ```
 
 ## Filter and trim
@@ -42,7 +42,7 @@ mergers <- mergePairs(dadaFs, derepFs, dadaRs, derepRs, verbose=TRUE, maxMismatc
 Considerations: Most of your reads should successfully merge. If a majority of reads failed to merge, you may need to revisit the truncLen parameter used in the filtering step and make sure that the truncated reads span your amplicon. 
 
 ## Track reads through the pipeline
-The lost of reads of each step of the pipeline ("input", "filtered", "denoisedF", "denoisedR", "merged") is tracked in a file for each sample(track_sample)
+The lost of reads of each step of the pipeline ("input", "filtered", "denoisedF", "denoisedR", "merged") is tracked in a file for each sample (track_Sample1, track_Sample2, ...).
 
 ## Remove chimeras
 ```R
