@@ -16,7 +16,7 @@ This workflow assumes that your sequencing data meets certain criteria:
 ```R
 setwd("C:/Users/apardo/Documents/metagenomica/scripts-github")
 ```
-#### Set the samples forlders. Each folder cntain th demultiplexed files of the sample.
+#### Set the samples forlders. Each folder contain the demultiplexed files of each sample.
 ```R
 directory_list=c("Invierno2017","Primavera2014")
 ```
@@ -40,6 +40,10 @@ Considerations: Most of your reads should successfully merge. If a majority of r
 ## Track reads through the pipeline
   The lost of reads of each step of the pipeline ("input", "filtered", "denoisedF", "denoisedR", "merged") is tracked in a file for each sample(track_sample)
 
+## Remove chimeras
+```R
+seqtab.nochim <- removeBimeraDenovo(st.all, method="consensus", multithread=TRUE, verbose=TRUE)
+```
 
 ### Assign taxonomy
 ```R
