@@ -2,7 +2,7 @@
 Pipeline develop in R to work with bacterial 16S ribosomal RNA gene amplicons from Next-generation Sequencing.
 The pipeline starts from Illumina-sequenced paired-end fastq files that have been split (or “demultiplexed”) by sample and from which the barcodes/adapters have already been removed. The end product is an amplicon sequence variant (ASV) table, a higher-resolution analogue of the traditional OTU table, .rds format (RData format). 
 
-### Starting point
+## Data requirements
 
 This workflow assumes that your sequencing data meets certain criteria:
 
@@ -10,21 +10,35 @@ This workflow assumes that your sequencing data meets certain criteria:
 * Non-biological nucleotides have been removed, e.g. primers, adapters, linkers, etc.
 * If paired-end sequencing data, the forward and reverse fastq files contain reads in matched order.
 
+## Starting point
 
-### Filter and trim
+#### Set the work directory
 ```R
-filterAndTrim(fnFs, filtFs, fnRs, filtRs, truncLen=c(270,240),maxEE=c(10,10), maxN=0, rm.phix=TRUE, compress=TRUE, multithread=TRUE)
+setwd("C:/Users/apardo/Documents/metagenomica/scripts-github")
 ```
-  
+#### Set the samples forlders. Each folder cntain th demultiplexed files of the sample.
+```R
+directory_list=c("Invierno2017","Primavera2014")
+```
 
-### Merge paired reads
+## Filter and trim
+Trim the reads using truncLen. First number is for the forwards read, and the second for the reverse read. 
+Filter the reads using maxEE and maxN. Reads with higherthan maxEE "expected errors" will be discarded. Expected errors are calculatedfrom the nominal definition of the quality score: EE = sum(10^(-Q/10)). Sequences with more than maxN Ns will be discarded.
+```R
+filterAndTrim(fnFs, filtFs, fnRs, filtRs, truncLen=c(270,240), maxEE=c(10,10), maxN=0, rm.phix=TRUE, compress=TRUE, multithread=TRUE)
+```
+Considerations: Your reads must still overlap after truncation in order to merge them later. That depende on the size of your     
+primer set used and, and how much the forward and reverse reads overlap after trimming. Your truncLen must be large enough to maintain at least 20 nucleotides of overlap between them.
+
+## Merge paired reads
+The maximum mismatches allowed in the overlap region could be seted by maxMismatch function.
 ```R
 mergers <- mergePairs(dadaFs, derepFs, dadaRs, derepRs, verbose=TRUE, maxMismatch = 15)
 ```
+Considerations: Most of your reads should successfully merge. If a majority of reads failed to merge, you may need to revisit the truncLen parameter used in the filtering step and make sure that the truncated reads span your amplicon. 
 
-### Track reads through the pipeline
-  track_Sample1
-  ("input", "filtered", "denoisedF", "denoisedR", "merged")
+## Track reads through the pipeline
+  The lost of reads of each step of the pipeline ("input", "filtered", "denoisedF", "denoisedR", "merged") is tracked in a file for each sample(track_sample)
 
 
 ### Assign taxonomy
