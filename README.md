@@ -20,7 +20,7 @@ This workflow assumes that your sequencing data meets certain criteria:
 ```R
 setwd("C:/Users/apardo/Documents/metagenomica/scripts-github")
 ```
-#### Set the samples forlders. Each folder contain the demultiplexed files of each sample.
+#### Set the samples forlders. Each folder contain demultiplexed files of the sample.
 ```R
 directory_list=c("Invierno2017","Primavera2014")
 ```
