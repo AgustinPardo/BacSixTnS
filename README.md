@@ -66,4 +66,4 @@ taxa <- addSpecies(taxa, paste(getwd(),"silva_species_assignment_v132.fa.gz", se
 Considerations : If your reads do not seem to be appropriately assigned, for example lots of your bacterial 16S sequences are being assigned as Eukaryota NA NA NA NA NA, your reads may be in the opposite orientation as the reference database. Tell dada2 to try the reverse-complement orientation with assignTaxonomy(..., tryRC=TRUE) and see if this fixes the assignments.
 
 ### Result
-At the end of the pipeline you will get two files. "seqtab_nochim.rds", is the OTU table with the representative sequence and it's counts per sample. "tax_final.rds" is the same table but insted of the represtnaive sequence you have the taxonomic asigantion.
+At the end of the pipeline you will get two files. "seqtab_nochim.rds", is the OTU table with the representative sequence and it's counts per sample. "tax_final.rds" is a where the representative sequence is assigned to taxonomic ranks ("Kingdom","Phylum","Class","Order","Family","Genus","Species").
