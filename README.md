@@ -22,7 +22,7 @@ setwd("C:/Users/apardo/Documents/metagenomica/scripts-github")
 ```
 #### Set the samples forlders. Each folder contain demultiplexed files of the sample.
 ```R
-directory_list=c("Sample1","Sample2","Sample3"...)
+directory_list=c("SamplesFolder1","SamplesFolder2","SamplesFolder3"...)
 ```
 
 ## Filter and trim
