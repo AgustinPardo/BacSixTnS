@@ -26,8 +26,7 @@ directory_list=c("SamplesFolder1","SamplesFolder2","SamplesFolder3"...)
 ```
 
 ## Filter and trim
-Trim the reads using truncLen. First number is for the forwards read, and the second for the reverse read. 
-Filter the reads using maxEE and maxN. Reads with higherthan maxEE "expected errors" will be discarded. Expected errors are calculatedfrom the nominal definition of the quality score: EE = sum(10^(-Q/10)). Sequences with more than maxN Ns will be discarded.
+Trim the reads using truncLen. First number is for the forwards read, and the second for the reverse read. Filter the reads using maxEE and maxN. Reads with higherthan maxEE "expected errors" will be discarded. Expected errors are calculated from the nominal definition of the quality score: EE = sum(10^(-Q/10)). Sequences with more than maxN Ns will be discarded.
 ```R
 filterAndTrim(fnFs, filtFs, fnRs, filtRs, truncLen=c(270,240), maxEE=c(10,10), maxN=0, rm.phix=TRUE, compress=TRUE, multithread=TRUE)
 ```
@@ -63,7 +62,7 @@ taxa <- addSpecies(taxa, paste(getwd(),"silva_species_assignment_v132.fa.gz", se
 * [silva_species_assignment_v132.fa.gz](https://zenodo.org/record/1172783/files/silva_species_assignment_v132.fa.gz?download=1)
 
 
-Considerations : If your reads do not seem to be appropriately assigned, for example lots of your bacterial 16S sequences are being assigned as Eukaryota NA NA NA NA NA, your reads may be in the opposite orientation as the reference database. Tell dada2 to try the reverse-complement orientation with assignTaxonomy(..., tryRC=TRUE) and see if this fixes the assignments.
+Considerations : If your reads do not seem to be appropriately assigned, for example lots of your bacterial 16S sequences are being assigned as Eukaryota NA NA NA NA NA, your reads may be in the opposite orientation as the reference database. Tell dada2 to try the reverse-complement orientation with assignTaxonomy (..., tryRC=TRUE) and see if this fixes the assignments.
 
 ### Result
 At the end of the pipeline you will get two files. "seqtab_nochim.rds", is the OTU table with the representative sequence and it's counts per sample. "tax_final.rds" file contais the representative sequence assigned to taxonomic ranks ("Kingdom","Phylum","Class","Order","Family","Genus","Species").
