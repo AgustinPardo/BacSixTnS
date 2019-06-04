@@ -47,6 +47,7 @@ The lost of reads of each step of the pipeline ("input", "filtered", "denoisedF"
 ```R
 seqtab.nochim <- removeBimeraDenovo(st.all, method="consensus", multithread=TRUE, verbose=TRUE)
 ```
+Considerations: Most of your reads should remain after chimera removal. If most of your reads were removed as chimeric, upstream processing may need to be revisited. In almost all cases this is caused by primer sequences with ambiguous nucleotides that were not removed prior to beginning of the pipeline.
 
 ### Assign taxonomy
 ```R
