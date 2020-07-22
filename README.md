@@ -1,4 +1,8 @@
 # Bacterial(Bac)16S(SixTnS)
+##### Idea, creation & maintenance by Agustin Pardo. Contact: agustinmpardo@gmail.com
+
+#
+
 Pipeline develop in R to work with bacterial 16S ribosomal RNA gene amplicons from Next-generation Sequencing.
 The pipeline starts from Illumina-sequenced paired-end fastq files that have been split (or “demultiplexed”) by sample and from which the barcodes/adapters have already been removed. The end product is an amplicon sequence variant (ASV) table, a higher-resolution analogue of the traditional OTU table, in ".rds" format (RData format). 
 
@@ -35,7 +39,7 @@ primer set used and, and how much the forward and reverse reads overlap after tr
 
 ## Merge paired reads
 The maximum mismatches allowed in the overlap region could be seted by maxMismatch function.
-```R
+```Ra
 mergers <- mergePairs(dadaFs, derepFs, dadaRs, derepRs, verbose=TRUE, maxMismatch = 15)
 ```
 Considerations: Most of your reads should successfully merge. If a majority of reads failed to merge, you may need to revisit the truncLen parameter used in the filtering step and make sure that the truncated reads span your amplicon. 
