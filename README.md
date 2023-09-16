@@ -71,3 +71,10 @@ Considerations : If your reads do not seem to be appropriately assigned, for exa
 
 ### Result
 At the end of the pipeline you will get two files. "seqtab_nochim.rds", is the OTU table with the representative sequence and it's counts per sample. "tax_final.rds" file contais the representative sequence assigned to taxonomic ranks ("Kingdom","Phylum","Class","Order","Family","Genus","Species").
+
+
+### Software used publications:
+
+[Vignale, F.A., Bernal Rey, D., Pardo, A.M. et al. Spatial and Seasonal Variations in the Bacterial Community of an Anthropogenic Impacted Urban Stream. Microb Ecol 85, 862–874 (2023). https://doi.org/10.1007/s00248-022-02055-z](https://www.google.com](https://link.springer.com/article/10.1007/s00248-022-02055-z)https://link.springer.com/article/10.1007/s00248-022-02055-z)
+
+[Raiger Iustman, L.J., Almasqué, F.J. & Vullo, D.L. Microbiota Diversity Change as Quality Indicator of Soils Exposed to Intensive Periurban Agriculture. Curr Microbiol 78, 338–346 (2021). https://doi.org/10.1007/s00284-020-02298-4](https://link.springer.com/article/10.1007/s00284-020-02298-4)
